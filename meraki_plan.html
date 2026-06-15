@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meraki Skin Center — Plan de Crecimiento Digital</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --rose:    #C47F8A;
+    --rose-lt: #E8C5CB;
+    --gold:    #BFA06A;
+    --gold-lt: #E8D9BC;
+    --cream:   #FAF6F2;
+    --ink:     #2A1F1F;
+    --muted:   #7A6B6B;
+    --white:   #FFFFFF;
+    --radius:  12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #2A1F1F 0%, #4A2F35 60%, #3A2820 100%);
+    padding: 56px 32px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 70% 40%, rgba(191,160,106,0.18) 0%, transparent 70%);
+  }
+  .logo-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: 1px;
+    line-height: 1.15;
+  }
+  header h1 em { font-style: italic; color: var(--rose-lt); }
+  header p {
+    margin-top: 16px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
+  /* NAV PILLS */
+  .phase-nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 28px 24px 0;
+  }
+  .phase-pill {
+    background: var(--white);
+    border: 1.5px solid var(--rose-lt);
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--rose);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .phase-pill:hover, .phase-pill.active {
+    background: var(--rose);
+    border-color: var(--rose);
+    color: white;
+  }
+
+  /* MAIN */
+  main { max-width: 820px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  /* SECTION */
+  .phase {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .phase.visible { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+  .phase-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rose-lt);
+  }
+  .phase-badge {
+    background: linear-gradient(135deg, var(--rose), var(--gold));
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .phase-meta { flex: 1; }
+  .phase-meta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .phase-meta span {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    border-left: 3px solid var(--rose-lt);
+  }
+  .card.gold { border-left-color: var(--gold); }
+  .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h3 .icon { font-size: 16px; }
+  .card p, .card li {
+    font-size: 14px;
+    color: #4A3838;
+    line-height: 1.65;
+  }
+  .card ul { padding-left: 18px; }
+  .card li { margin-bottom: 5px; }
+  .card li strong { color: var(--rose); }
+
+  /* TAG CHIPS */
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .tag {
+    background: var(--cream);
+    border: 1px solid var(--gold-lt);
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  /* KPI TABLE */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .kpi {
+    background: linear-gradient(135deg, #FAF0F2, #FAF6F2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .kpi-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--rose);
+    line-height: 1;
+  }
+  .kpi-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--cream);
+    font-size: 14px;
+    color: #4A3838;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '◇';
+    color: var(--gold);
+    font-size: 13px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: linear-gradient(135deg, rgba(196,127,138,0.1), rgba(191,160,106,0.08));
+    border: 1px solid var(--rose-lt);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #3A2A2A;
+    line-height: 1.7;
+  }
+  .highlight strong { color: var(--rose); }
+
+  /* FOOTER NAV */
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    gap: 12px;
+  }
+  .btn {
+    background: var(--rose);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: #B06070; }
+  .btn.outline {
+    background: transparent;
+    border: 1.5px solid var(--rose);
+    color: var(--rose);
+  }
+  .btn.outline:hover { background: var(--rose); color: white; }
+  .btn:disabled { opacity: 0.3; cursor: default; }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    height: 3px;
+    background: var(--rose-lt);
+    border-radius: 999px;
+    margin: 20px 0 28px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--gold));
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
+
+  @media (max-width: 480px) {
+    .phase-nav { gap: 6px; }
+    .phase-pill { font-size: 11px; padding: 5px 14px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="logo-eyebrow">Plan de Crecimiento Digital</p>
+  <h1>Meraki <em>Skin Center</em></h1>
+  <p>Estrategia de 6 meses para atraer visitas, convertir seguidores en clientes y construir una comunidad de belleza.</p>
+</header>
+
+<div class="phase-nav" id="phaseNav">
+  <button class="phase-pill active" onclick="goTo(0)">Diagnóstico</button>
+  <button class="phase-pill" onclick="goTo(1)">Identidad</button>
+  <button class="phase-pill" onclick="goTo(2)">Contenido</button>
+  <button class="phase-pill" onclick="goTo(3)">Captación</button>
+  <button class="phase-pill" onclick="goTo(4)">Conversión</button>
+  <button class="phase-pill" onclick="goTo(5)">Métricas</button>
+</div>
+
+<main>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:16%"></div></div>
+
+  <!-- FASE 0: DIAGNÓSTICO -->
+  <section class="phase visible" id="phase-0">
+    <div class="phase-header">
+      <div class="phase-badge">0</div>
+      <div class="phase-meta">
+        <span>Semanas 1–2</span>
+        <h2>Diagnóstico y Base</h2>
+      </div>
+    </div>
+
+    <div class="highlight">
+      Antes de publicar contenido o invertir en anuncios, necesitas saber exactamente <strong>desde dónde partes</strong>. Esta fase es tu auditoría inicial — rápida pero crítica.
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">🔍</span> Auditoría de perfiles actuales</h3>
+      <ul class="checklist">
+        <li>Revisa tu bio en Instagram, Facebook y TikTok — ¿menciona claramente qué ofreces y dónde estás?</li>
+        <li>Verifica que el link en bio apunte a tu web o Linktree actualizado</li>
+        <li>Comprueba que el nombre de usuario sea el mismo en todas las plataformas: <strong>@merakiskincenter</strong></li>
+        <li>Anota cuántos seguidores tienes hoy en cada red (tu "punto cero")</li>
+        <li>Registra o reclama tu perfil en <strong>Google Business Profile</strong> — es gratuito y esencial para búsquedas locales</li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h3><span class="icon">👩‍💻</span> Análisis de competencia local</h3>
+      <p>Busca en Instagram y TikTok las 3–5 clínicas de belleza más activas en tu zona. Anota:</p>
+      <ul style="margin-top:10px;">
+        <li>¿Qué tipo de contenido genera más likes y comentarios?</li>
+        <li>¿Qué servicios promocionan más?</li>
+        <li>¿Qué <em>no</em> están haciendo que tú podrías aprovechar?</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Limpieza facial</span>
+        <span class="tag">Microblading</span>
+        <span class="tag">Tratamientos corporales</span>
+        <span class="tag">Hifu / Radiofrecuencia</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">🎯</span> Define tu cliente ideal (Buyer Persona)</h3>
+      <ul class="checklist">
+        <li><strong>Quién:</strong> Mujer de 22–45 años, trabajadora o ama de casa con ingreso medio, en tu zona</li>
+        <li><strong>Qué busca:</strong> Verse y sentirse bien, resultados visibles, precio justo</li>
+        <li><strong>Dónde la encuentras:</strong> Instagram y TikTok principalmente; Facebook para mayores de 35</li>
+        <li><strong>Qué le frena:</strong> Precio, desconfianza, no saber si el tratamiento es para ella</li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn outline" disabled>← Anterior</button>
+      <button class="btn" onclick="goTo(1)">Siguiente: Identidad →</button>
+    </div>
+  </section>
+
+  <!-- FASE 1: IDENTIDAD -->
+  <section class="phase" id="phase-1">
+    <div class="phase-header">
+      <div class="phase-badge">1</div>
+      <div class="phase-meta">
+        <span>Semanas 2–3</span>
+        <h2>Identidad de Marca Consistente</h2>
+      </div>
+    </div>
+
+    <div class="highlight">
+      En belleza, <strong>la estética lo es todo</strong>. Tu perfil debe verse tan cuidado como el servicio que ofreces. Una identidad visual consistente genera confianza antes de que el cliente te contacte.
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">🎨</span> Paleta y estilo visual</h3>
+      <ul class="checklist">
+        <li>Colores principales: <strong>rosa empolvado + dorado + blanco marfil</strong> (ya los tienes en tu web)</li>
+        <li>Usa siempre las mismas fuentes en tus gráficos (Canva tiene plantillas consistentes)</li>
+        <li>Todas las fotos con luz natural o fondo neutro claro — nunca fondos abarrotados</li>
+        <li>Logo visible pero discreto en cada imagen que publiques</li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h3><span class="icon">📸</span> Sesión fotográfica básica</h3>
+      <p>No necesitas fotógrafo profesional todavía. Con un teléfono decente:</p>
+      <ul style="margin-top:10px;">
+        <li>Fotos del espacio: sillones, productos, manos trabajando</li>
+        <li>Antes/después de tratamientos (con permiso escrito del cliente)</li>
+        <li>Foto de la especialista/terapeuta — las personas confían en personas, no en logos</li>
+        <li>10–15 fotos de stock de calidad para cubrir semanas sin sesión</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">✍️</span> Voz y tono de comunicación</h3>
+      <p style="margin-bottom:10px;">Define cómo le hablas a tu audiencia en cada canal:</p>
+      <ul class="checklist">
+        <li><strong>Instagram:</strong> Cálido, aspiracional, tips de belleza + testimonios</li>
+        <li><strong>TikTok:</strong> Cercano, educativo, entretenido — muestra el proceso</li>
+        <li><strong>Facebook:</strong> Informativo, promociones, atención a clientas de mayor edad</li>
+        <li><strong>WhatsApp:</strong> Rápido, amigable, con CTA claro para agendar</li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn outline" onclick="goTo(0)">← Anterior</button>
+      <button class="btn" onclick="goTo(2)">Siguiente: Contenido →</button>
+    </div>
+  </section>
+
+  <!-- FASE 2: CONTENIDO -->
+  <section class="phase" id="phase-2">
+    <div class="phase-header">
+      <div class="phase-badge">2</div>
+      <div class="phase-meta">
+        <span>Meses 1–3 (continuo)</span>
+        <h2>Estrategia de Contenido</h2>
+      </div>
+    </div>
+
+    <div class="highlight">
+      El contenido es tu vendedor de tiempo completo que trabaja mientras tú duermes. La clave es la <strong>mezcla 70–20–10</strong>: 70% valor/educación, 20% social/entretenimiento, 10% venta directa.
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">📅</span> Calendario semanal de publicaciones</h3>
+      <ul class="checklist">
+        <li><strong>Lunes:</strong> Tip de skincare o mito/verdad de belleza (carrusel Instagram)</li>
+        <li><strong>Miércoles:</strong> Reel de proceso o resultado de tratamiento (Instagram + TikTok)</li>
+        <li><strong>Jueves:</strong> Testimonio de cliente o reseña (Story + Post)</li>
+        <li><strong>Viernes:</strong> Promo del fin de semana o "¿Cuál tratamiento es para ti?" (Facebook + IG)</li>
+        <li><strong>Sábado:</strong> Contenido behind-the-scenes / día en el spa (TikTok)</li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h3><span class="icon">🎬</span> Formatos que más convierten en belleza</h3>
+      <ul class="checklist">
+        <li><strong>Antes/Después:</strong> El contenido con más engagement — guárdalos para stories destacados</li>
+        <li><strong>POV videos:</strong> "POV: Tu primera limpieza facial en Meraki" — gran viralidad en TikTok</li>
+        <li><strong>Tutoriales de 30 seg:</strong> Rutina de cuidado en casa — posicionas expertise</li>
+        <li><strong>Encuestas y preguntas:</strong> "¿Cuál es tu mayor problema de piel?" — generan interacción</li>
+        <li><strong>Unboxing de productos:</strong> Si vendes cosméticos, los unboxings tienen millones de vistas</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">#️⃣</span> Hashtags estratégicos (mezcla de 3 niveles)</h3>
+      <div class="tags">
+        <span class="tag">#MerakiSkinCenter</span>
+        <span class="tag">#SkincareMéxico</span>
+        <span class="tag">#LimpiezaFacial</span>
+        <span class="tag">#CuidadoDeLaPiel</span>
+        <span class="tag">#TratamientosFaciales</span>
+        <span class="tag">#BellezaMéxico</span>
+        <span class="tag">#EstéticaProfesional</span>
+        <span class="tag">#GlowUp</span>
+        <span class="tag">#SkincareRoutine</span>
+        <span class="tag">#PielSana</span>
+      </div>
+      <p style="margin-top:12px; font-size:13px; color:var(--muted);">Usa 5–8 hashtags por post (no 30). Mezcla populares + nicho + locales.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">🤝</span> Colaboraciones de bajo costo</h3>
+      <ul class="checklist">
+        <li><strong>Microinfluencers locales (1K–20K seguidores):</strong> Ofréce un tratamiento gratis a cambio de contenido genuino</li>
+        <li><strong>Trueque con negocios afines:</strong> Peluquerías, gimnasios, tiendas de ropa — se promocionan mutuamente</li>
+        <li><strong>Clientes embajadoras:</strong> Descuento permanente a cambio de reseña mensual en sus redes</li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn outline" onclick="goTo(1)">← Anterior</button>
+      <button class="btn" onclick="goTo(3)">Siguiente: Captación →</button>
+    </div>
+  </section>
+
+  <!-- FASE 3: CAPTACIÓN -->
+  <section class="phase" id="phase-3">
+    <div class="phase-header">
+      <div class="phase-badge">3</div>
+      <div class="phase-meta">
+        <span>Meses 2–4</span>
+        <h2>Captación de Nuevos Clientes</h2>
+      </div>
+    </div>
+
+    <div class="highlight">
+      Aquí es donde tu perfil de desarrollador te da ventaja real. Puedes implementar herramientas que la mayoría de spas en tu zona ni conocen.
+    </div>
+
+    <div class="card gold">
+      <h3><span class="icon">📍</span> SEO Local — Tu mayor palanca gratuita</h3>
+      <ul class="checklist">
+        <li>Completa <strong>Google Business Profile</strong> al 100%: fotos, horarios, servicios, precios estimados</li>
+        <li>Pide a cada clienta satisfecha que te deje una reseña de 5 estrellas (mándales el link directo)</li>
+        <li>Publica en GBP 1 vez por semana (fotos, ofertas) — afecta directamente el ranking en Maps</li>
+        <li>Responde a <strong>todas</strong> las reseñas, positivas y negativas, en menos de 24h</li>
+        <li>Registra en Yelp México, Foursquare y directorios de salud/belleza locales</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">💰</span> Campañas de Meta Ads (presupuesto mínimo)</h3>
+      <p style="margin-bottom:10px;">Con $200–$500 MXN/semana puedes llegar a miles de personas en tu zona:</p>
+      <ul class="checklist">
+        <li><strong>Objetivo:</strong> "Mensajes a WhatsApp" — la conversión más directa para negocios locales</li>
+        <li><strong>Segmentación:</strong> Mujeres 20–50 años, radio 10 km de tu local, intereses en belleza/cuidado personal</li>
+        <li><strong>Creative:</strong> Antes/después reales con texto "Primera limpieza facial $XXX — agenda hoy"</li>
+        <li><strong>Test A/B:</strong> Prueba 2 imágenes distintas con el mismo texto — pausa la que rinda menos en 3 días</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">🎁</span> Promociones de entrada (Lead magnets)</h3>
+      <ul class="checklist">
+        <li><strong>"Primera cita con X% de descuento"</strong> — elimina la barrera de probar</li>
+        <li><strong>Pack de bienvenida:</strong> Primera + segunda visita con precio especial</li>
+        <li><strong>Diagnóstico de piel gratuito:</strong> 15 min — sin presión de venta, alto valor percibido</li>
+        <li><strong>Referido:</strong> "Trae a una amiga y ambas obtienen 20% de descuento"</li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h3><span class="icon">💬</span> WhatsApp Business como CRM básico</h3>
+      <ul class="checklist">
+        <li>Configura respuestas automáticas: bienvenida + lista de servicios + link de agenda</li>
+        <li>Crea etiquetas: "Nueva cliente", "Cliente frecuente", "Interesada — seguimiento"</li>
+        <li>Manda recordatorio 24h antes de cada cita (reduce cancelaciones ~40%)</li>
+        <li>Lista de difusión mensual para promociones (no grupo — las clientas lo aprecian más)</li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn outline" onclick="goTo(2)">← Anterior</button>
+      <button class="btn" onclick="goTo(4)">Siguiente: Conversión →</button>
+    </div>
+  </section>
+
+  <!-- FASE 4: CONVERSIÓN Y RETENCIÓN -->
+  <section class="phase" id="phase-4">
+    <div class="phase-header">
+      <div class="phase-badge">4</div>
+      <div class="phase-meta">
+        <span>Meses 3–6</span>
+        <h2>Conversión y Retención</h2>
+      </div>
+    </div>
+
+    <div class="highlight">
+      Adquirir una cliente nueva cuesta <strong>5× más</strong> que retener una existente. Tu foco de meses 3–6 es convertir primeras visitas en clientas frecuentes.
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">🔄</span> Sistema de fidelización simple</h3>
+      <ul class="checklist">
+        <li><strong>Tarjeta de sellos digital:</strong> 5 tratamientos = 1 gratis (puedes hacerlo con una hoja en Notion o una app)</li>
+        <li><strong>Membership mensual:</strong> "Plan Meraki" — 1 limpieza/mes por tarifa fija reducida</li>
+        <li><strong>Cumpleaños:</strong> Manda un mensaje personal con descuento el mes de su cumpleaños</li>
+        <li><strong>Seguimiento post-tratamiento:</strong> WhatsApp a los 3 días — "¿Cómo te fue con tu piel?"</li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h3><span class="icon">🌐</span> Tu web como herramienta de conversión</h3>
+      <p style="margin-bottom:10px;">Ya tienes la web desplegada en Vercel — ahora optimízala para vender:</p>
+      <ul class="checklist">
+        <li>Agrega un botón de WhatsApp flotante — es el CTA #1 para negocios de servicio en México</li>
+        <li>Incluye una sección de reseñas reales con foto y nombre (con permiso)</li>
+        <li>Lista de precios estimados — la transparencia reduce la fricción de contactar</li>
+        <li>Formulario de agenda sencillo o link a Calendly para reservas directas</li>
+        <li>Velocidad móvil: prueba en PageSpeed Insights — Google te premia en búsquedas</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">📦</span> Upselling y venta de productos</h3>
+      <ul class="checklist">
+        <li>Recomienda 1–2 productos al final de cada tratamiento (rutina personalizada)</li>
+        <li>Crea "kits de mantenimiento" con los productos que usas en el spa</li>
+        <li>Venta en línea: con tu perfil técnico puedes integrar una tienda en tu web existente (MercadoShops o WooCommerce)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">⭐</span> Gestión de reseñas y reputación</h3>
+      <ul class="checklist">
+        <li>Pide reseña en Google Maps <strong>mientras la clienta está en el lugar</strong> — la tasa de cumplimiento es 3× mayor</li>
+        <li>Crea un código QR en recepción que lleve directo a tu perfil de reseñas</li>
+        <li>10 reseñas positivas en Google cambia radicalmente tu visibilidad local</li>
+        <li>Si hay una queja, respóndela en público con empatía — demuestra profesionalismo</li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn outline" onclick="goTo(3)">← Anterior</button>
+      <button class="btn" onclick="goTo(5)">Siguiente: Métricas →</button>
+    </div>
+  </section>
+
+  <!-- FASE 5: MÉTRICAS -->
+  <section class="phase" id="phase-5">
+    <div class="phase-header">
+      <div class="phase-badge">5</div>
+      <div class="phase-meta">
+        <span>Revisión mensual</span>
+        <h2>Métricas y Ajuste</h2>
+      </div>
+    </div>
+
+    <div class="highlight">
+      Lo que no se mide no mejora. Como ingeniero ya tienes el mindset correcto: <strong>data first</strong>. Estas son las métricas que importan realmente para un negocio de belleza local.
+    </div>
+
+    <div class="card gold">
+      <h3><span class="icon">📊</span> KPIs clave — Metas a 6 meses</h3>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-num">+500</div>
+          <div class="kpi-label">Seguidores IG nuevos/mes</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num">5%+</div>
+          <div class="kpi-label">Tasa de engagement</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num">30+</div>
+          <div class="kpi-label">Reseñas Google 5★</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num">40%</div>
+          <div class="kpi-label">Clientas que repiten</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">📱</span> Herramientas de medición (todas gratuitas)</h3>
+      <ul class="checklist">
+        <li><strong>Meta Business Suite:</strong> Alcance, engagement, mensajes recibidos por semana</li>
+        <li><strong>TikTok Analytics:</strong> Vistas de perfil, reproducciones, tráfico a bio</li>
+        <li><strong>Google Business Insights:</strong> Búsquedas, clics a web, llamadas desde Maps</li>
+        <li><strong>Google Analytics 4:</strong> Visitas al sitio, qué servicio consultan más, de dónde vienen</li>
+        <li><strong>WhatsApp Business:</strong> Mensajes recibidos por semana (tu proxy de intención de compra)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">🗓️</span> Revisión mensual — 30 min cada primer lunes</h3>
+      <ul class="checklist">
+        <li>¿Qué contenido generó más consultas/mensajes? → Haz más de eso</li>
+        <li>¿De dónde llegaron las clientas nuevas? (Maps, Instagram, referido, etc.)</li>
+        <li>¿Cuántos WhatsApps recibí vs cuántas citas se convirtieron? (tasa de cierre)</li>
+        <li>¿Qué promoción tuvo mejor respuesta este mes?</li>
+        <li>Ajusta el calendario de contenido del próximo mes con base en los datos</li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h3><span class="icon">🚀</span> Escalada — Meses 4–6</h3>
+      <p style="margin-bottom:10px;">Una vez que tengas tracción orgánica y al menos 20 reseñas positivas:</p>
+      <ul class="checklist">
+        <li>Escala el presupuesto de Meta Ads al doble en las campañas que ya funcionaron</li>
+        <li>Considera colaboración con un influencer de mediano alcance (20K–100K) local</li>
+        <li>Lanza lista de espera para tratamientos de alta demanda — crea escasez percibida</li>
+        <li>Evalúa newsletter mensual por email con tips + promo exclusiva de suscriptoras</li>
+        <li>Explora booking online con pago anticipado para reducir no-shows</li>
+      </ul>
+    </div>
+
+    <div class="highlight" style="margin-top:20px;">
+      <strong>Resumen ejecutivo:</strong> Semanas 1–2 diagnóstico y base. Mes 1 identidad + contenido constante. Mes 2 activa captación pagada. Mes 3 mide y ajusta. Meses 4–6 escala lo que ya funciona. Tu ventaja como developer: puedes automatizar recordatorios, construir páginas de landing optimizadas y analizar datos mejor que el 99% de la competencia.
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn outline" onclick="goTo(4)">← Anterior</button>
+      <button class="btn" onclick="goTo(0)">↺ Volver al inicio</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  let current = 0;
+  const total = 6;
+
+  function goTo(index) {
+    document.getElementById('phase-' + current).classList.remove('visible');
+    document.querySelectorAll('.phase-pill')[current].classList.remove('active');
+    current = index;
+    document.getElementById('phase-' + current).classList.add('visible');
+    document.querySelectorAll('.phase-pill')[current].classList.add('active');
+    const pct = Math.round(((current + 1) / total) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
