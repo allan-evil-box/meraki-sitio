@@ -32,7 +32,7 @@
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 250;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 4rem;
       background: rgba(253,248,245,0.92);
@@ -435,10 +435,35 @@
       transform: translateY(0);
     }
 
+     /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 300;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
+      .hamburger {display: flex;}
       #inicio { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; text-align: center; }
       .hero-visual { display: none; }
       .hero-desc { margin: 0 auto 2rem; }
@@ -461,8 +486,18 @@
     <li><a href="https://wa.me/5215518443473?text=Hola,%20quiero%20agendar%20una%20cita%20en%20Meraki%20Skin%20Center" target="_blank" class="nav-cta">Agendar cita</a></li>
     <li><a href="meraki_plan.html">Plan</a></li> 
   </ul>
+  <button class="hamburger" id="hamburger" arial-label="Abrir menú">
+  <span></span><span></span><span></span>
+  </button>
 </nav>
-
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio" class="mobile-link">Inicio</a>
+  <a href="#servicios" class="mobile-link">Servicios</a>
+  <a href="#blog" class="mobile-link">Blog</a>
+  <a href="#contacto" class="mobile-link">Contacto</a>
+  <a href="meraki_plan.html" class="mobile-link">Plan</a>
+  <a href="https://wa.me/5215518443473?text=Hola,%20quiero%20agendar%20una%20cita%20en%20Meraki%20Skin%20Center" target="_blank" class="mobile-cta">💬 Agendar cita</a>
+</div>
 <!-- HERO -->
 <section id="inicio">
   <div class="hero-text">
@@ -634,6 +669,34 @@
 </footer>
 
 <script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    isOpen ? closeMenu() : (() => {
+      hamburger.classList.add('open');
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    })();
+  });
+
+  // Cerrar al tocar el fondo
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMenu();
+  });
+
+  // Cerrar al tocar cualquier link
+  document.querySelectorAll('.mobile-link, .mobile-cta').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
   // Fade-up on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
