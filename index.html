@@ -669,25 +669,46 @@
 </footer>
 
 <script>
+
+  
   // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+ // function closeMenu() {
+  //  hamburger.classList.remove('open');
+   // mobileMenu.classList.remove('open');
+   // document.body.style.overflow = '';
+ // }
 
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.contains('open');
-    isOpen ? closeMenu() : (() => {
+ // hamburger.addEventListener('click', () => {
+   // const isOpen = mobileMenu.classList.contains('open');
+   // isOpen ? closeMenu() : (() => {
+    //  hamburger.classList.add('open');
+     // mobileMenu.classList.add('open');
+     // document.body.style.overflow = 'hidden';
+   // })();
+
+    hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.contains('open');
+    if (isOpen) {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    } else {
       hamburger.classList.add('open');
       mobileMenu.classList.add('open');
       document.body.style.overflow = 'hidden';
-    })();
+    }
+
+
+    
   });
 
+
+
+
+  
   // Cerrar al tocar el fondo
   mobileMenu.addEventListener('click', (e) => {
     if (e.target === mobileMenu) closeMenu();
